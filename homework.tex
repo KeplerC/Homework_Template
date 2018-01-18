@@ -135,10 +135,44 @@
 
 % Go back to where we left off
 \begin{homeworkProblem}[6]
+	\part[1]
     Evaluate the integrals
     \(\int_0^1 (1 - x^2) \dx\)
     and
     \(\int_1^{\infty} \frac{1}{x^2} \dx\).
+    \\
+
+    \solution
+    \[
+        \begin{split}
+            n^2 - n + 1 &=
+            \\
+            &\leq n^2
+            \\
+            &\leq c \cdot n^2/2
+        \end{split}
+    \]
+
+
+\begin{homeworkProblem}
+    Write part of \alg{Quick-Sort($list, start, end$)}
+    \begin{algorithm}[]
+        \begin{algorithmic}[1]
+            \Function{Quick-Sort}{$list, start, end$}
+                \If{$start \geq end$}
+                    \State{} \Return{}
+                \EndIf{}
+                \State{} $mid \gets \Call{Partition}{list, start, end}$
+                \State{} \Call{Quick-Sort}{$list, start, mid - 1$}
+                \State{} \Call{Quick-Sort}{$list, mid + 1, end$}
+            \EndFunction{}
+        \end{algorithmic}
+        \caption{Start of QuickSort}
+    \end{algorithm}
+\end{homeworkProblem}
+
+
+
 \end{homeworkProblem}
 
 \end{document}
