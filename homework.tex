@@ -40,7 +40,7 @@
 
 \pagestyle{fancy}
 \lhead{\hmwkAuthorName}
-\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\chead{\hmwkClass\ : \hmwkTitle}
 \rhead{\firstxmark}
 \lfoot{\lastxmark}
 \cfoot{\thepage}
@@ -79,7 +79,7 @@
 % assignment aren't sequential. See the last 3 problems of this template for an
 % example.
 %
-\newenvironment{homeworkProblem}[1][-1]{
+\newenvironment{hw}[1][-1]{
     \ifnum#1>0
         \setcounter{homeworkProblemCounter}{#1}
     \fi
@@ -123,6 +123,7 @@
 % Alias for the Solution section header
 \newcommand{\solution}{\textbf{\large Solution}}
 
+
 % Probability commands: Expectation, Variance, Covariance, Bias
 \newcommand{\E}{\mathrm{E}}
 \newcommand{\Var}{\mathrm{Var}}
@@ -133,46 +134,48 @@
 
 \maketitle
 
-% Go back to where we left off
-\begin{homeworkProblem}[6]
-	\part[1]
-    Evaluate the integrals
-    \(\int_0^1 (1 - x^2) \dx\)
-    and
-    \(\int_1^{\infty} \frac{1}{x^2} \dx\).
-    \\
+%CH 1: 5 8
+\begin{hw}[1]
+	\part{}
+	Yes, there is a strong stable matching algorithm similar to original stable matching algorithm. We set the rule that man cannot replace other engaged men otherwise we fall into an infinite loop and unstable pair. \\
+	Men can have a forced concrete order between two indifferent women. Women will be engaged with men that has highest preference(if men with same preference propose to woman, unstable pair will not be formed because woman does not \textbf{prefer} the other man to her fiance) . 
+	\begin{algorithm}[]
+		\begin{algorithmic}[1]
+            \Function{Indifferent Stable matching }{}
+            \State{Setting every man m to free.}
+            \State{Let S = There are man that is free and has not proposed to every woman}
+            \While{S is not empty}{}
+            \State{Choosing $m\in S$}
+            \State{Let w be the first woman in his list. If two women are indifferent to each other, choose the one by a concrete order.}
+            \If{w is free}
+            \State{engage(w, m)}
+            \ElsIf{w prefers m over her fiance m'}
+            \State{Setting m' be free and engage (w, m)}
+            \Else {\quad w rejects m}
+            \EndIf
+			\EndWhile
 
-    \solution
-    \[
-        \begin{split}
-            n^2 - n + 1 &=
-            \\
-            &\leq n^2
-            \\
-            &\leq c \cdot n^2/2
-        \end{split}
-    \]
-
-
-\begin{homeworkProblem}
-    Write part of \alg{Quick-Sort($list, start, end$)}
-    \begin{algorithm}[]
-        \begin{algorithmic}[1]
-            \Function{Quick-Sort}{$list, start, end$}
-                \If{$start \geq end$}
-                    \State{} \Return{}
-                \EndIf{}
-                \State{} $mid \gets \Call{Partition}{list, start, end}$
-                \State{} \Call{Quick-Sort}{$list, start, mid - 1$}
-                \State{} \Call{Quick-Sort}{$list, mid + 1, end$}
             \EndFunction{}
-        \end{algorithmic}
-        \caption{Start of QuickSort}
-    \end{algorithm}
-\end{homeworkProblem}
+		\end{algorithmic}
+	\end{algorithm} 
 
+\begin{proof}
+Proof by contradiction. 
+Suppose $\exists (w, m)$ such that w prefers $m'$ and m prefers $w'$ as strong instable pair. Then m has to propose to $w'$ and get engaged. \\
+Because m has to propose to $w'$ before engaging wth w, then m cannot be replaced by $m'$ who has lower preference. Also, w would choose any indifferent pair of $m'$ that has higher preference than her eventual partner m. Then we reach a contradiction on both sides. \\
+\end{proof}
 
-
-\end{homeworkProblem}
+\part{}
+No we cannot elimiate weak instable pair. \\
+\begin{proof}
+Consider the following senario of only two pairs:\\
+m and $m'$ is indifferent to w and $w'$\\
+w and $w'$ prefers m over $m'$\\
+If we pair (m, w') and (m', w), then we w prefer m and m is indifferent.\\ 
+If we pair (m, w) and (m', w'), then we w' prefer m and m is also indifferent.\\
+Then instable pair always exists. \\
+\end{proof}
+\end{hw}
+\pagebreak
 
 \end{document}
